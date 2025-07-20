@@ -5,8 +5,8 @@
   "installCommand": "pnpm install",
   "devCommand": "pnpm dev",
   "functions": {
-    "src/pages/api/**/*.js": {
-      "runtime": "nodejs18.x"
+    "src/pages/api/**/*.ts": {
+      "runtime": "node"
     }
   }
 }
