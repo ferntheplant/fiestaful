@@ -1,0 +1,61 @@
+---
+export interface Props {
+  eventName: string;
+  eventDate?: string;
+  eventTime?: string;
+  eventLocation?: string;
+  eventDescription?: string;
+}
+
+const { eventName, eventDate, eventTime, eventLocation, eventDescription } =
+  Astro.props;
+---
+
+<!-- HERO SECTION: Main event title and visual theme -->
+<section
+  class="hero-section bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16"
+>
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+      {eventName}
+    </h1>
+
+    {
+      eventDescription && (
+        <p class="text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto">
+          {eventDescription}
+        </p>
+      )
+    }
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      {
+        eventDate && (
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div class="text-2xl font-semibold mb-2">📅 Date</div>
+            <div class="text-lg">{eventDate}</div>
+          </div>
+        )
+      }
+
+      {
+        eventTime && (
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div class="text-2xl font-semibold mb-2">🕐 Time</div>
+            <div class="text-lg">{eventTime}</div>
+          </div>
+        )
+      }
+
+      {
+        eventLocation && (
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+            <div class="text-2xl font-semibold mb-2">📍 Location</div>
+            <div class="text-lg">{eventLocation}</div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+

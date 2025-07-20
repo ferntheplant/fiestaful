@@ -1,0 +1,175 @@
+---
+import Layout from "../layouts/Layout.astro";
+import EventHero from "../components/EventHero.astro";
+import RSVPForm from "../components/RSVPForm.astro";
+import RSVPList from "../components/RSVPList.astro";
+import CommunicationHelpers from "../components/CommunicationHelpers.astro";
+import { supabase } from "../lib/supabase";
+import { getSessionCookie, verifyGuestPassword } from "../lib/auth";
+import { formatDate, formatTime } from "../lib/utils";
+
+// Check for guest session
+const cookies = Astro.request.headers.get("cookie") || "";
+const guestSession = getSessionCookie(cookies, "guest");
+
+// If no session, redirect to login
+if (!guestSession) {
+  return Astro.redirect("/login");
+}
+
+// Verify session is still valid
+const isValidSession = await verifyGuestPassword(guestSession);
+if (!isValidSession) {
+  return Astro.redirect("/login");
+}
+
+// Check if Supabase is configured
+if (!supabase) {
+  return Astro.redirect("/login?error=supabase_not_configured");
+}
+
+// Get event data
+const { data: eventData, error: eventError } = await supabase
+  .from("event")
+  .select("*")
+  .single();
+
+if (eventError || !eventData) {
+  return Astro.redirect("/login?error=event_not_found");
+}
+
+// Get RSVPs
+const { data: rsvps, error: rsvpError } = await supabase
+  .from("rsvps")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+const rsvpList = rsvps || [];
+
+// Get URL parameters for success/error messages
+const url = new URL(Astro.request.url);
+const successMessage =
+  url.searchParams.get("success") === "true"
+    ? "Your RSVP has been submitted successfully!"
+    : undefined;
+const errorMessage = url.searchParams.get("error")
+  ? "There was an error submitting your RSVP. Please try again."
+  : undefined;
+
+// Format event data
+const formattedEvent = {
+  ...eventData,
+  date: eventData.date ? formatDate(eventData.date) : undefined,
+  time: eventData.time ? formatTime(eventData.time) : undefined,
+};
+
+// Get current URL for communication helpers
+const eventUrl = Astro.url.origin;
+---
+
+<Layout
+  title={eventData.name}
+  description={eventData.description || `Join us for ${eventData.name}`}
+>
+  <!-- HERO SECTION: Main event title and visual theme -->
+  <EventHero
+    eventName={eventData.name}
+    eventDate={formattedEvent.date}
+    eventTime={formattedEvent.time}
+    eventLocation={eventData.location}
+    eventDescription={eventData.description}
+  />
+
+  <!-- EVENT DETAILS: Core event information -->
+  <section class="event-details bg-white py-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-gray-800">Event Details</h2>
+
+          {
+            eventData.description && (
+              <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                  About This Event
+                </h3>
+                <p class="text-gray-600 leading-relaxed">
+                  {eventData.description}
+                </p>
+              </div>
+            )
+          }
+
+          {
+            eventData.location && (
+              <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                  📍 Location
+                </h3>
+                <p class="text-gray-600">{eventData.location}</p>
+              </div>
+            )
+          }
+        </div>
+
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-gray-800">Quick Info</h2>
+
+          {
+            eventData.date && (
+              <div class="bg-blue-50 rounded-lg p-4">
+                <div class="text-sm font-medium text-blue-800 mb-1">Date</div>
+                <div class="text-lg text-blue-900">{formattedEvent.date}</div>
+              </div>
+            )
+          }
+
+          {
+            eventData.time && (
+              <div class="bg-green-50 rounded-lg p-4">
+                <div class="text-sm font-medium text-green-800 mb-1">Time</div>
+                <div class="text-lg text-green-900">{formattedEvent.time}</div>
+              </div>
+            )
+          }
+
+          <div class="bg-purple-50 rounded-lg p-4">
+            <div class="text-sm font-medium text-purple-800 mb-1">
+              RSVP Status
+            </div>
+            <div class="text-lg text-purple-900">
+              {eventData.accepting_rsvps ? "Open for RSVPs" : "RSVPs Closed"}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP SECTION: Response form and current attendees -->
+  <RSVPForm
+    acceptingRSVPs={eventData.accepting_rsvps}
+    successMessage={successMessage}
+    errorMessage={errorMessage}
+  />
+
+  <!-- RSVP LIST SECTION: Current attendees and response counts -->
+  <RSVPList rsvps={rsvpList} showDetails={false} />
+
+  <!-- COMMUNICATION HELPERS SECTION: Copy buttons and communication assistance -->
+  <CommunicationHelpers
+    rsvps={rsvpList}
+    eventDetails={eventData}
+    eventUrl={eventUrl}
+  />
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-300">Powered by Event RSVP Template</p>
+      <p class="text-sm text-gray-400 mt-2">
+        Need help? Contact the event host.
+      </p>
+    </div>
+  </footer>
+</Layout>

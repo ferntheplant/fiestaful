@@ -1,0 +1,47 @@
+{
+  "name": "event-rsvp-template",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A beautiful, one-click deployable event RSVP template built with Astro, Supabase, and Tailwind CSS",
+  "author": "Event RSVP Template",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/vercel": "^8.2.2",
+    "@supabase/supabase-js": "^2.52.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "astro": "^4.0.0",
+    "qrcode": "^1.5.4",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5"
+  },
+  "keywords": [
+    "event",
+    "rsvp",
+    "template",
+    "astro",
+    "supabase",
+    "tailwind",
+    "vercel",
+    "deploy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/event-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/event-template/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/event-template#readme",
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
+}

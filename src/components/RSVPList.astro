@@ -1,0 +1,118 @@
+---
+import { formatDate } from "../lib/utils";
+
+export interface Props {
+  rsvps: Array<{
+    id: string;
+    guest_name: string;
+    guest_email: string;
+    guest_phone?: string;
+    response: "yes" | "no" | "maybe";
+    message?: string;
+    created_at: string;
+  }>;
+  showDetails?: boolean;
+}
+
+const { rsvps, showDetails = false } = Astro.props;
+
+// Count responses
+const yesCount = rsvps.filter((r) => r.response === "yes").length;
+const noCount = rsvps.filter((r) => r.response === "no").length;
+const maybeCount = rsvps.filter((r) => r.response === "maybe").length;
+---
+
+<!-- RSVP LIST SECTION: Current attendees and response counts -->
+<section class="rsvp-list-section bg-white py-12">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+      Who's Coming?
+    </h2>
+
+    <!-- Response Summary -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div
+        class="bg-green-100 border border-green-200 rounded-lg p-6 text-center"
+      >
+        <div class="text-3xl font-bold text-green-600 mb-2">{yesCount}</div>
+        <div class="text-green-800 font-semibold">Attending</div>
+      </div>
+
+      <div class="bg-red-100 border border-red-200 rounded-lg p-6 text-center">
+        <div class="text-3xl font-bold text-red-600 mb-2">{noCount}</div>
+        <div class="text-red-800 font-semibold">Not Attending</div>
+      </div>
+
+      <div
+        class="bg-yellow-100 border border-yellow-200 rounded-lg p-6 text-center"
+      >
+        <div class="text-3xl font-bold text-yellow-600 mb-2">{maybeCount}</div>
+        <div class="text-yellow-800 font-semibold">Maybe</div>
+      </div>
+    </div>
+
+    {
+      rsvps.length > 0 ? (
+        <div class="space-y-4">
+          {rsvps.map((rsvp) => (
+            <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class={`w-3 h-3 rounded-full ${
+                      rsvp.response === "yes"
+                        ? "bg-green-500"
+                        : rsvp.response === "no"
+                          ? "bg-red-500"
+                          : "bg-yellow-500"
+                    }`}
+                  />
+                  <h3 class="text-lg font-semibold text-gray-800">
+                    {rsvp.guest_name}
+                  </h3>
+                  <span
+                    class={`px-3 py-1 rounded-full text-sm font-medium ${
+                      rsvp.response === "yes"
+                        ? "bg-green-100 text-green-800"
+                        : rsvp.response === "no"
+                          ? "bg-red-100 text-red-800"
+                          : "bg-yellow-100 text-yellow-800"
+                    }`}
+                  >
+                    {rsvp.response === "yes"
+                      ? "Attending"
+                      : rsvp.response === "no"
+                        ? "Not Attending"
+                        : "Maybe"}
+                  </span>
+                </div>
+                <div class="text-sm text-gray-500">
+                  {formatDate(rsvp.created_at)}
+                </div>
+              </div>
+
+              {showDetails && (
+                <div class="text-sm text-gray-600 space-y-1">
+                  {rsvp.guest_email && <div>📧 {rsvp.guest_email}</div>}
+                  {rsvp.guest_phone && <div>📞 {rsvp.guest_phone}</div>}
+                  {rsvp.message && (
+                    <div class="mt-3 p-3 bg-white rounded border">
+                      <div class="font-medium mb-1">Message:</div>
+                      <div class="text-gray-700">{rsvp.message}</div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center text-gray-600 py-8">
+          <div class="text-4xl mb-4">👥</div>
+          <p class="text-lg">No RSVPs yet. Be the first to respond!</p>
+        </div>
+      )
+    }
+  </div>
+</section>
+
