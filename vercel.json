@@ -8,9 +8,5 @@
     "src/pages/api/**/*.js": {
       "runtime": "nodejs18.x"
     }
-  },
-  "env": {
-    "PUBLIC_SUPABASE_URL": "@public_supabase_url",
-    "PUBLIC_SUPABASE_ANON_KEY": "@public_supabase_anon_key"
   }
 }

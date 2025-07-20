@@ -46,15 +46,15 @@ Looking forward to seeing you there!`;
 
 <!-- COMMUNICATION HELPERS SECTION: Copy buttons and communication assistance -->
 <section class="communication-helpers bg-gray-100 py-12">
-  <div class="container mx-auto px-4 max-w-4xl">
-    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+  <div class="container mx-auto max-w-4xl px-4">
+    <h2 class="mb-8 text-center text-3xl font-bold text-gray-800">
       Communication Tools
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       <!-- Copy Tools -->
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
+      <div class="rounded-lg bg-white p-6 shadow-lg">
+        <h3 class="mb-4 text-xl font-semibold text-gray-800">
           Copy Information
         </h3>
 
@@ -62,7 +62,7 @@ Looking forward to seeing you there!`;
           <button
             id="copyAllEmails"
             data-text={allEmails}
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-blue-700"
           >
             📧 Copy All Email Addresses
           </button>
@@ -70,7 +70,7 @@ Looking forward to seeing you there!`;
           <button
             id="copyAttendingEmails"
             data-text={attendingEmails}
-            class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-green-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-green-700"
           >
             ✅ Copy Attending Emails Only
           </button>
@@ -78,7 +78,7 @@ Looking forward to seeing you there!`;
           <button
             id="copyAllPhones"
             data-text={allPhones}
-            class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-purple-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-purple-700"
           >
             📞 Copy All Phone Numbers
           </button>
@@ -86,7 +86,7 @@ Looking forward to seeing you there!`;
           <button
             id="copyEventLink"
             data-text={eventUrl}
-            class="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-gray-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-gray-700"
           >
             🔗 Copy Event Link
           </button>
@@ -94,7 +94,7 @@ Looking forward to seeing you there!`;
           <button
             id="copyInvitationText"
             data-text={invitationText}
-            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-orange-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-orange-700"
           >
             📝 Copy Invitation Text
           </button>
@@ -102,13 +102,13 @@ Looking forward to seeing you there!`;
       </div>
 
       <!-- Email and Calendar Tools -->
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">Quick Actions</h3>
+      <div class="rounded-lg bg-white p-6 shadow-lg">
+        <h3 class="mb-4 text-xl font-semibold text-gray-800">Quick Actions</h3>
 
         <div class="space-y-3">
           <a
             href={`mailto:${allEmails}?subject=${encodeURIComponent(`You're invited to ${eventDetails.name}`)}&body=${encodeURIComponent(invitationText)}`}
-            class="block w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded text-center transition duration-200"
+            class="block w-full rounded bg-red-600 px-4 py-2 text-center font-medium text-white transition duration-200 hover:bg-red-700"
           >
             📧 Email All Guests
           </a>
@@ -117,21 +117,21 @@ Looking forward to seeing you there!`;
             href={`mailto:${attendingEmails}?subject=${encodeURIComponent(`Update for ${eventDetails.name}`)}&body=${encodeURIComponent(`Hi everyone!
 
 Just a quick update about ${eventDetails.name}...`)}`}
-            class="block w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded text-center transition duration-200"
+            class="block w-full rounded bg-green-600 px-4 py-2 text-center font-medium text-white transition duration-200 hover:bg-green-700"
           >
             ✅ Email Attending Guests
           </a>
 
           <button
             id="downloadCalendar"
-            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-indigo-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-indigo-700"
           >
             📅 Download Calendar File
           </button>
 
           <button
             id="generateQR"
-            class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+            class="w-full rounded bg-teal-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-teal-700"
           >
             📱 Generate QR Code
           </button>
@@ -140,13 +140,13 @@ Just a quick update about ${eventDetails.name}...`)}`}
     </div>
 
     <!-- QR Code Display -->
-    <div id="qrCodeContainer" class="hidden mt-6 text-center">
-      <div class="bg-white rounded-lg shadow-lg p-6 inline-block">
-        <h3 class="text-lg font-semibold mb-4">QR Code for Event</h3>
+    <div id="qrCodeContainer" class="mt-6 hidden text-center">
+      <div class="inline-block rounded-lg bg-white p-6 shadow-lg">
+        <h3 class="mb-4 text-lg font-semibold">QR Code for Event</h3>
         <div id="qrCodeImage" class="mb-4"></div>
         <button
           id="downloadQR"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+          class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-200 hover:bg-blue-700"
         >
           Download QR Code
         </button>

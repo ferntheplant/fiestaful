@@ -13,26 +13,26 @@ const { eventName, eventDate, eventTime, eventLocation, eventDescription } =
 
 <!-- HERO SECTION: Main event title and visual theme -->
 <section
-  class="hero-section bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16"
+  class="hero-section bg-gradient-to-r from-blue-500 to-purple-600 py-16 text-white"
 >
   <div class="container mx-auto px-4 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+    <h1 class="mb-6 text-4xl leading-tight font-bold md:text-6xl">
       {eventName}
     </h1>
 
     {
       eventDescription && (
-        <p class="text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto">
+        <p class="mx-auto mb-8 max-w-3xl text-xl opacity-90 md:text-2xl">
           {eventDescription}
         </p>
       )
     }
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+    <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
       {
         eventDate && (
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <div class="text-2xl font-semibold mb-2">📅 Date</div>
+          <div class="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
+            <div class="mb-2 text-2xl font-semibold">📅 Date</div>
             <div class="text-lg">{eventDate}</div>
           </div>
         )
@@ -40,8 +40,8 @@ const { eventName, eventDate, eventTime, eventLocation, eventDescription } =
 
       {
         eventTime && (
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <div class="text-2xl font-semibold mb-2">🕐 Time</div>
+          <div class="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
+            <div class="mb-2 text-2xl font-semibold">🕐 Time</div>
             <div class="text-lg">{eventTime}</div>
           </div>
         )
@@ -49,8 +49,8 @@ const { eventName, eventDate, eventTime, eventLocation, eventDescription } =
 
       {
         eventLocation && (
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <div class="text-2xl font-semibold mb-2">📍 Location</div>
+          <div class="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
+            <div class="mb-2 text-2xl font-semibold">📍 Location</div>
             <div class="text-lg">{eventLocation}</div>
           </div>
         )
@@ -58,4 +58,3 @@ const { eventName, eventDate, eventTime, eventLocation, eventDescription } =
     </div>
   </div>
 </section>
-

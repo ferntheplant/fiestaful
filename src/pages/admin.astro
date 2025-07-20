@@ -66,7 +66,7 @@ const eventUrl = Astro.url.origin;
 <Layout title="Admin Dashboard - Event Management">
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
+    <header class="border-b bg-white shadow-sm">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <div>
@@ -75,7 +75,7 @@ const eventUrl = Astro.url.origin;
           </div>
           <a
             href="/"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200"
+            class="rounded-lg bg-blue-600 px-4 py-2 text-white transition duration-200 hover:bg-blue-700"
           >
             View Event Page
           </a>
@@ -86,7 +86,7 @@ const eventUrl = Astro.url.origin;
     <div class="container mx-auto px-4 py-8">
       {
         successMessage && (
-          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+          <div class="mb-6 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700">
             {successMessage}
           </div>
         )
@@ -94,27 +94,27 @@ const eventUrl = Astro.url.origin;
 
       {
         errorMessage && (
-          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+          <div class="mb-6 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
             {errorMessage}
           </div>
         )
       }
 
       <!-- Event Management Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+      <div class="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <!-- Event Details -->
         <div class="lg:col-span-2">
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Event Details</h2>
+          <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h2 class="mb-4 text-xl font-bold text-gray-800">Event Details</h2>
 
             <form method="POST" action="/api/admin-actions" class="space-y-4">
               <input type="hidden" name="action" value="update_event" />
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
                   <label
                     for="name"
-                    class="block text-sm font-medium text-gray-700 mb-1"
+                    class="mb-1 block text-sm font-medium text-gray-700"
                   >
                     Event Name
                   </label>
@@ -124,14 +124,14 @@ const eventUrl = Astro.url.origin;
                     name="name"
                     value={eventData.name}
                     required
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
                   <label
                     for="date"
-                    class="block text-sm font-medium text-gray-700 mb-1"
+                    class="mb-1 block text-sm font-medium text-gray-700"
                   >
                     Date
                   </label>
@@ -142,16 +142,16 @@ const eventUrl = Astro.url.origin;
                     value={eventData.date
                       ? new Date(eventData.date).toISOString().slice(0, 16)
                       : ""}
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
                   <label
                     for="time"
-                    class="block text-sm font-medium text-gray-700 mb-1"
+                    class="mb-1 block text-sm font-medium text-gray-700"
                   >
                     Time (Display)
                   </label>
@@ -161,14 +161,14 @@ const eventUrl = Astro.url.origin;
                     name="time"
                     value={eventData.time || ""}
                     placeholder="e.g., 6:00 PM"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
                   <label
                     for="location"
-                    class="block text-sm font-medium text-gray-700 mb-1"
+                    class="mb-1 block text-sm font-medium text-gray-700"
                   >
                     Location
                   </label>
@@ -177,7 +177,7 @@ const eventUrl = Astro.url.origin;
                     id="location"
                     name="location"
                     value={eventData.location || ""}
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -185,7 +185,7 @@ const eventUrl = Astro.url.origin;
               <div>
                 <label
                   for="description"
-                  class="block text-sm font-medium text-gray-700 mb-1"
+                  class="mb-1 block text-sm font-medium text-gray-700"
                 >
                   Description
                 </label>
@@ -193,7 +193,7 @@ const eventUrl = Astro.url.origin;
                   id="description"
                   name="description"
                   rows="4"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   >{eventData.description || ""}</textarea
                 >
               </div>
@@ -223,7 +223,7 @@ const eventUrl = Astro.url.origin;
 
               <button
                 type="submit"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+                class="rounded bg-blue-600 px-4 py-2 font-semibold text-white transition duration-200 hover:bg-blue-700"
               >
                 Update Event
               </button>
@@ -233,8 +233,8 @@ const eventUrl = Astro.url.origin;
 
         <!-- Quick Stats -->
         <div class="space-y-6">
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h3 class="mb-4 text-lg font-semibold text-gray-800">
               Quick Stats
             </h3>
 
@@ -268,8 +268,8 @@ const eventUrl = Astro.url.origin;
           </div>
 
           <!-- Post Update -->
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h3 class="mb-4 text-lg font-semibold text-gray-800">
               Post Update
             </h3>
 
@@ -281,12 +281,12 @@ const eventUrl = Astro.url.origin;
                 rows="3"
                 placeholder="Share an update with your guests..."
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               ></textarea>
 
               <button
                 type="submit"
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+                class="w-full rounded bg-green-600 px-4 py-2 font-semibold text-white transition duration-200 hover:bg-green-700"
               >
                 Post Update
               </button>
@@ -296,14 +296,14 @@ const eventUrl = Astro.url.origin;
       </div>
 
       <!-- RSVP List with Details -->
-      <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">All RSVPs</h2>
+      <div class="mb-8 rounded-lg bg-white p-6 shadow-lg">
+        <h2 class="mb-4 text-xl font-bold text-gray-800">All RSVPs</h2>
         <RSVPList rsvps={rsvpList} showDetails={true} />
       </div>
 
       <!-- Communication Tools -->
-      <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">
+      <div class="mb-8 rounded-lg bg-white p-6 shadow-lg">
+        <h2 class="mb-4 text-xl font-bold text-gray-800">
           Communication Tools
         </h2>
         <CommunicationHelpers
@@ -316,14 +316,14 @@ const eventUrl = Astro.url.origin;
       <!-- Recent Updates -->
       {
         updatesList.length > 0 && (
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Recent Updates</h2>
+          <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h2 class="mb-4 text-xl font-bold text-gray-800">Recent Updates</h2>
 
             <div class="space-y-4">
               {updatesList.map((update) => (
-                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                <div class="border-l-4 border-blue-500 py-2 pl-4">
                   <p class="text-gray-800">{update.content}</p>
-                  <p class="text-sm text-gray-500 mt-1">
+                  <p class="mt-1 text-sm text-gray-500">
                     {formatDate(update.created_at)}
                   </p>
                 </div>

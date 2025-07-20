@@ -50,7 +50,7 @@ This guide will walk you through deploying your Event RSVP Template to Vercel wi
 5. Update the default passwords:
 
    ```sql
-   UPDATE event SET 
+   UPDATE event SET
      admin_password_hash = 'your_admin_password',
      guest_password_hash = 'your_guest_password'
    WHERE id = (SELECT id FROM event LIMIT 1);
@@ -68,8 +68,8 @@ This guide will walk you through deploying your Event RSVP Template to Vercel wi
 2. Add the following variables:
 
 ```
-PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your_anon_key_here
 ```
 
 3. Click "Save"

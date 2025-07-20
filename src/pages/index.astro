@@ -82,18 +82,18 @@ const eventUrl = Astro.url.origin;
 
   <!-- EVENT DETAILS: Core event information -->
   <section class="event-details bg-white py-12">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="container mx-auto max-w-4xl px-4">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-800">Event Details</h2>
 
           {
             eventData.description && (
               <div>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                <h3 class="mb-2 text-lg font-semibold text-gray-700">
                   About This Event
                 </h3>
-                <p class="text-gray-600 leading-relaxed">
+                <p class="leading-relaxed text-gray-600">
                   {eventData.description}
                 </p>
               </div>
@@ -103,7 +103,7 @@ const eventUrl = Astro.url.origin;
           {
             eventData.location && (
               <div>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                <h3 class="mb-2 text-lg font-semibold text-gray-700">
                   📍 Location
                 </h3>
                 <p class="text-gray-600">{eventData.location}</p>
@@ -117,8 +117,8 @@ const eventUrl = Astro.url.origin;
 
           {
             eventData.date && (
-              <div class="bg-blue-50 rounded-lg p-4">
-                <div class="text-sm font-medium text-blue-800 mb-1">Date</div>
+              <div class="rounded-lg bg-blue-50 p-4">
+                <div class="mb-1 text-sm font-medium text-blue-800">Date</div>
                 <div class="text-lg text-blue-900">{formattedEvent.date}</div>
               </div>
             )
@@ -126,15 +126,15 @@ const eventUrl = Astro.url.origin;
 
           {
             eventData.time && (
-              <div class="bg-green-50 rounded-lg p-4">
-                <div class="text-sm font-medium text-green-800 mb-1">Time</div>
+              <div class="rounded-lg bg-green-50 p-4">
+                <div class="mb-1 text-sm font-medium text-green-800">Time</div>
                 <div class="text-lg text-green-900">{formattedEvent.time}</div>
               </div>
             )
           }
 
-          <div class="bg-purple-50 rounded-lg p-4">
-            <div class="text-sm font-medium text-purple-800 mb-1">
+          <div class="rounded-lg bg-purple-50 p-4">
+            <div class="mb-1 text-sm font-medium text-purple-800">
               RSVP Status
             </div>
             <div class="text-lg text-purple-900">
@@ -164,10 +164,10 @@ const eventUrl = Astro.url.origin;
   />
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8">
+  <footer class="bg-gray-800 py-8 text-white">
     <div class="container mx-auto px-4 text-center">
       <p class="text-gray-300">Powered by Event RSVP Template</p>
-      <p class="text-sm text-gray-400 mt-2">
+      <p class="mt-2 text-sm text-gray-400">
         Need help? Contact the event host.
       </p>
     </div>

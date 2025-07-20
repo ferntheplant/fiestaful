@@ -104,9 +104,11 @@ const eventData = await getEventDetails();
 ---
 
 <!-- HERO SECTION: Main event title and visual theme -->
-<section class="hero-section bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16">
+<section
+  class="hero-section bg-gradient-to-r from-blue-500 to-purple-600 py-16 text-white"
+>
   <div class="container mx-auto text-center">
-    <h1 class="text-5xl font-bold mb-4">{eventData.name}</h1>
+    <h1 class="mb-4 text-5xl font-bold">{eventData.name}</h1>
     <p class="text-xl opacity-90">Join us for an unforgettable celebration</p>
   </div>
 </section>
@@ -137,7 +139,7 @@ Build these helper features:
 ```javascript
 // Generate mailto: links with all recipients
 function generateInviteEmail(rsvps, eventDetails) {
-  const emails = rsvps.map(r => r.guest_email).join(';');
+  const emails = rsvps.map((r) => r.guest_email).join(";");
   const subject = `You're invited to ${eventDetails.name}`;
   const body = `Hi there!\n\nYou're invited to ${eventDetails.name}...\n\nRSVP here: ${eventUrl}`;
   return `mailto:${emails}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -147,7 +149,7 @@ function generateInviteEmail(rsvps, eventDetails) {
 **Copy-to-Clipboard Features**
 
 - "Copy All Emails" button (semicolon-separated)
-- "Copy Phone Numbers" button  
+- "Copy Phone Numbers" button
 - "Copy Invitation Text" button
 - "Copy Event Link" button
 
@@ -170,10 +172,10 @@ function generateInviteEmail(rsvps, eventDetails) {
 // /src/pages/index.astro
 const { request } = Astro;
 const formData = await request.formData();
-const password = formData.get('password');
+const password = formData.get("password");
 
-if (!password || !await verifyGuestPassword(password)) {
-  return Astro.redirect('/login');
+if (!password || !(await verifyGuestPassword(password))) {
+  return Astro.redirect("/login");
 }
 ---
 ```
@@ -205,17 +207,17 @@ https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/eve
 ```astro
 ---
 // Handle RSVP submission
-if (Astro.request.method === 'POST') {
+if (Astro.request.method === "POST") {
   const formData = await Astro.request.formData();
   const rsvp = {
-    guest_name: formData.get('name'),
-    guest_email: formData.get('email'),
-    response: formData.get('response'),
-    message: formData.get('message'),
+    guest_name: formData.get("name"),
+    guest_email: formData.get("email"),
+    response: formData.get("response"),
+    message: formData.get("message"),
   };
-  
+
   await saveRSVP(rsvp);
-  return Astro.redirect('/?success=true');
+  return Astro.redirect("/?success=true");
 }
 ---
 ```
@@ -235,7 +237,7 @@ Your implementation is successful when:
 ✅ **Host Experience**: Host can manage event details and see RSVPs via admin dashboard  
 ✅ **Communication**: Host can easily copy guest lists and launch pre-populated emails  
 ✅ **Customization**: AI can easily modify .astro templates to change event appearance  
-✅ **Mobile**: Everything works perfectly on phones  
+✅ **Mobile**: Everything works perfectly on phones
 
 ## Key Constraints
 
@@ -252,7 +254,7 @@ Your implementation is successful when:
 
 - Simple, clear code structure
 - AI-friendly template organization
-- Mobile-first responsive design  
+- Mobile-first responsive design
 - One-click deployment experience
 - Communication assistance over automation
 

@@ -14,7 +14,7 @@ A beautiful, one-click deployable event RSVP template built with Astro, Supabase
 
 ## 🚀 Quick Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/event-template&project-name=my-event&repository-name=my-event&stores=[{"type":"integration","integrationSlug":"supabase","productSlug":"postgres"}])
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fferntheplant%2Ffiestaful&project-name=my-fiesta&repository-name=my-fiesta&products=%5B%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22supabase%22%2C%22productSlug%22%3A%22supabase%22%2C%22ptotool%22%3A%22storage%22%2C%22group%22%3A%22postgres%22%7D%5D)
 
 ## 📋 Prerequisites
 
@@ -47,8 +47,8 @@ After deployment:
 In your Vercel project settings, add:
 
 ```
-PUBLIC_SUPABASE_URL=your_supabase_url
-PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 4. Customize Your Event
