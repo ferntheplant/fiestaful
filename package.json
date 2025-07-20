@@ -5,6 +5,9 @@
   "description": "A beautiful, one-click deployable event RSVP template built with Astro, Supabase, and Tailwind CSS",
   "author": "Event RSVP Template",
   "license": "MIT",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
