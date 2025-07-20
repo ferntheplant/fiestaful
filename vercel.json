@@ -5,6 +5,8 @@
   "installCommand": "pnpm install",
   "devCommand": "pnpm dev",
   "functions": {
-    "src/pages/api/**/*.ts": {}
+    "src/pages/api/**/*.ts": {
+      "maxDuration": 30
+    }
   }
 }
